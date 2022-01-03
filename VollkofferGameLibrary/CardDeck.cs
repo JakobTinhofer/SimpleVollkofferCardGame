@@ -4,11 +4,7 @@ using System.Text;
 
 namespace LightBlueFox.Games.Vollkoffer
 {
-    public enum CardSuits
+    public class CardDeck : CardCollection
     {
-        Hearts,
-        Clubs,
-        Spades,
-        Diamonds
     }
 }
