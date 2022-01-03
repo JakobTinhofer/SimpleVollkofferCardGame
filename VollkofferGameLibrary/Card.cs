@@ -7,7 +7,7 @@ namespace LightBlueFox.Games.Vollkoffer
     /// <summary>
     /// Represents a certain playing card, like the four of diamonds. Does not have to be unique
     /// </summary>
-    public abstract class Card
+    public class Card
     {
         /// <summary>
         /// The deck this card is from.
@@ -32,6 +32,10 @@ namespace LightBlueFox.Games.Vollkoffer
         public Card(CardSuits s, CardValues v)
         {
             Suit = s; Value = v;
+        }
+        public override string ToString()
+        {
+            return (Suit.SuitSymbol == null ? (Suit.SuitName.ToLower() + " " + Value) : (Value + " of " + Suit.SuitName));
         }
     }
 }
