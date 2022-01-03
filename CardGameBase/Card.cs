@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CardGameBase
+namespace LightBlueFox.Games.Vollkoffer
 {
-    public class TestClass
+    public abstract class Card
     {
     }
 }
