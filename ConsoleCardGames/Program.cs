@@ -1,5 +1,5 @@
 ﻿using System;
-using CardGameBase;
+using LightBlueFox.Games.Vollkoffer;
 
 namespace ConsoleCardGames
 {
@@ -8,7 +8,7 @@ namespace ConsoleCardGames
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            var t = new TestClass();
+            Console.WriteLine(new Card(CardSuits.Diamonds, CardValues.Ace));
         }
     }
 }
