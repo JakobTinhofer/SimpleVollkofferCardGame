@@ -52,7 +52,7 @@ namespace LightBlueFox.Games.Vollkoffer
         /// This card has no suit, but is black. This might indicate a joker, or a falsely created Card.
         /// </summary>
         public readonly static CardSuits Black = new CardSuits(CardColor.Black);
-
+        public static CardSuits[] AllSuits = {Hearts, Diamonds, Clubs, Spades}; 
         #endregion
     }
 
