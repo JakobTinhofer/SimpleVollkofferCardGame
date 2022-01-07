@@ -48,6 +48,8 @@ namespace LightBlueFox.Games.Vollkoffer
         /// </summary>
         public Card PopRandom()
         {
+            if(Count == 0) return null;
+
             int i = r.Next(0, Count);
             Card c = this[i];
             RemoveAt(i);
@@ -58,6 +60,8 @@ namespace LightBlueFox.Games.Vollkoffer
         /// </summary>
         public CardCollection PopRandom(int count)
         {
+            if(count > Count) throw new ArgumentOutOfRangeException("There are not enough elements in this collection!");
+
             CardCollection col = new CardCollection();
             for (int i = 0; i < count; i++)
             {
@@ -90,6 +94,7 @@ namespace LightBlueFox.Games.Vollkoffer
         }
 
         #endregion
+
         #region Constructors
         /// <summary>
         /// Create an empty collection.
