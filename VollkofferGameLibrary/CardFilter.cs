@@ -21,6 +21,13 @@ namespace LightBlueFox.Games.Vollkoffer
         /// <summary>
         /// True for all cards
         /// </summary>
-        public readonly static CardFilter AllCards = (c) => true;
+        public readonly static CardFilter AllCards = (Card c) => { return true; };
+        /// <summary>
+        /// True for all cards bigger than <see cref="CardValues.Ten"/>
+        /// </summary>
+        public static bool OnlyFiguren(Card c)
+        {
+            return c.Value > CardValues.Ten;
+        }
     }
 }
