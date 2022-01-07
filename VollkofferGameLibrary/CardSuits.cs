@@ -44,14 +44,31 @@ namespace LightBlueFox.Games.Vollkoffer
         public readonly static CardSuits Clubs = new CardSuits("♣", "Clubs", CardColor.Black);
         public readonly static CardSuits Spades = new CardSuits("♠", "Spades", CardColor.Black);
 
-        /// <summary>
-        /// This card has no suit, but is red. This might indicate a joker, or a falsely created Card.
-        /// </summary>
-        public readonly static CardSuits Red = new CardSuits(CardColor.Red);
-        /// <summary>
-        /// This card has no suit, but is black. This might indicate a joker, or a falsely created Card.
-        /// </summary>
-        public readonly static CardSuits Black = new CardSuits(CardColor.Black);
+
+        #region Overwrites and Operators
+        public static bool operator ==(CardSuits s1, CardSuits s2)
+        {
+            return s1.SuitName == s2.SuitName;
+        }
+
+        public static bool operator !=(CardSuits s1, CardSuits s2)
+        {
+            return s1.SuitName == s2.SuitName;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(SuitName);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj.GetType() != typeof(CardSuits)) return false;
+
+            return SuitName == ((CardSuits)obj).SuitName;
+        }
+        #endregion
+
         public static CardSuits[] AllSuits = {Hearts, Diamonds, Clubs, Spades}; 
         #endregion
     }

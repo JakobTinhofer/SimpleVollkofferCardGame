@@ -6,8 +6,6 @@ namespace LightBlueFox.Games.Vollkoffer
 {
     public enum CardValues
     {
-        Joker,
-        Ace,
         Two,
         Three,
         Four,
@@ -19,6 +17,7 @@ namespace LightBlueFox.Games.Vollkoffer
         Ten,
         Jack,
         Queen,
-        King
+        King,
+        Ace
     }
 }
