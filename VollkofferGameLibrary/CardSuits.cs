@@ -25,9 +25,7 @@ namespace LightBlueFox.Games.Vollkoffer
         /// Whether the card is red or black. Hearts and Diamonds are always red, while Clubs and Spades are black.
         /// </summary>
         public CardColor Color { get; private set; }
-        private CardSuits(string s, string n, CardColor c) { SuitSymbol = s; SuitName = n; Color = c; }
-        private CardSuits(CardColor c) { Color = c; SuitName = c.ToString(); }
-
+        private CardSuits(string s, string n, CardColor c, byte value) { SuitSymbol = s; SuitName = n; Color = c; ByteValue = value; }
         /// <summary>
         /// This is just <see cref="CardSuits.SuitName"/>.
         /// </summary>
@@ -36,13 +34,17 @@ namespace LightBlueFox.Games.Vollkoffer
         {
             return SuitName;
         }
+        /// <summary>
+        /// A byte representation of this suit.
+        /// </summary>
+        public byte ByteValue { get; private set; }
         #endregion
 
         #region Suits
-        public readonly static CardSuits Hearts = new CardSuits("♥", "Hearts", CardColor.Red);
-        public readonly static CardSuits Diamonds = new CardSuits("♦", "Diamonds", CardColor.Red);
-        public readonly static CardSuits Clubs = new CardSuits("♣", "Clubs", CardColor.Black);
-        public readonly static CardSuits Spades = new CardSuits("♠", "Spades", CardColor.Black);
+        public readonly static CardSuits Hearts = new CardSuits("♥", "Hearts", CardColor.Red, 0);
+        public readonly static CardSuits Diamonds = new CardSuits("♦", "Diamonds", CardColor.Red, 1);
+        public readonly static CardSuits Clubs = new CardSuits("♣", "Clubs", CardColor.Black, 2);
+        public readonly static CardSuits Spades = new CardSuits("♠", "Spades", CardColor.Black, 3);
 
 
         #region Overwrites and Operators
@@ -70,6 +72,11 @@ namespace LightBlueFox.Games.Vollkoffer
         #endregion
 
         public static CardSuits[] AllSuits = {Hearts, Diamonds, Clubs, Spades}; 
+
+        public static CardSuits FromByte(byte b)
+        {
+            return AllSuits[b];
+        }
         #endregion
     }
 

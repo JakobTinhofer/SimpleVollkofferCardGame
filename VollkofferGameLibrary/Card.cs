@@ -10,11 +10,6 @@ namespace LightBlueFox.Games.Vollkoffer
     public class Card
     {
         /// <summary>
-        /// The deck this card is from.
-        /// </summary>
-        public CardDeck OwnerDeck { get; private set; }
-
-        /// <summary>
         /// The suit of the card, like <see cref="CardSuits.Clubs"/> or <see cref="CardSuits.Hearts"/>
         /// </summary>
         public CardSuits Suit { get; private set; }
@@ -29,10 +24,26 @@ namespace LightBlueFox.Games.Vollkoffer
         /// </summary>
         /// <param name="s">The suit of the card, like <see cref="CardSuits.Clubs"/> or <see cref="CardSuits.Hearts"/></param>
         /// <param name="v">The value / number of the card, like <see cref="CardValues.Eight"/> or <see cref="CardValues.Queen"/></param>
-        public Card(CardSuits s, CardValues v)
+        internal Card(CardSuits s, CardValues v)
         {
             Suit = s; Value = v;
         }
+
+        #region Serialization
+
+        internal Card(byte[] bytes)
+        {
+            Value = (CardValues)bytes[0];
+            Suit = CardSuits.FromByte(bytes[1]);
+        }
+
+        internal byte[] Serialize()
+        {
+            return new byte[] { (byte)Value, Suit.ByteValue };
+        }
+
+        #endregion
+
         public override string ToString()
         {
             return (Suit.SuitSymbol == null ? (Suit.SuitName.ToLower() + " " + Value) : (Value + " of " + Suit.SuitName));

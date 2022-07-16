@@ -15,10 +15,11 @@ namespace LightBlueFox.Games.Vollkoffer
         public int RoundNumber { get; private set; }
         #endregion
 
-        public TurnContext(Card hc, int pi, int rn) { 
-            HighestCard = hc;
-            PlayerIndex = pi;
-            RoundNumber = rn;
+        public TurnContext(Card highestCard, int playerIndex, int roundNumber, int? stackDimension = null) { 
+            HighestCard = highestCard;
+            PlayerIndex = playerIndex;
+            RoundNumber = roundNumber;
+            StackDimension = stackDimension;
         }
 
         #region Serialization
@@ -58,4 +59,6 @@ namespace LightBlueFox.Games.Vollkoffer
 
         #endregion
     }
+
+    
 }

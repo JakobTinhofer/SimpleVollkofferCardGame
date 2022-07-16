@@ -25,7 +25,29 @@ namespace LightBlueFox.Games.Vollkoffer
             }
         }        
 
-        internal void PlayCards(params Card[] cards)
+        internal void PlayCards(Player p, params Card[] cards)
+        {
+            try
+            {
+                ValidatePlayCards(StackDimension, HighestCard, p, cards);
+                if (StackDimension == null)
+                    StackDimension = cards.Length;
+                foreach (var item in cards)
+                {
+                    p.Hand.Remove(item);
+                }
+                this.Add(cards);
+                _sort();
+            }
+            catch (Exception)
+            {
+                throw;
+            }   
+
+            
+        }
+
+        public static void ValidatePlayCards(int? StackDimension, Card HighestCard, Player p, params Card[] cards)
         {
             if (cards.Length > 4 || cards.Length == 0)
             {
@@ -43,6 +65,10 @@ namespace LightBlueFox.Games.Vollkoffer
                 {
                     throw new ArgumentException("You can only play cards of same value!");
                 }
+                if (!p.Hand.Contains(card))
+                {
+                    throw new ArgumentException("You cannot play a card you do not have!");
+                }
             }
 
             if (HighestCard != null && cards[0].Value <= HighestCard.Value)
@@ -50,11 +76,7 @@ namespace LightBlueFox.Games.Vollkoffer
                 throw new ArgumentException("You cannot play this card, since it is not high enough!");
             }
 
-            if (StackDimension == null)
-                StackDimension = cards.Length;
-
-            this.Add(cards);
-            _sort();
+            
         }
 
         private void _sort()
